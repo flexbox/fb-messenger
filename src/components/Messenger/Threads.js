@@ -1,11 +1,13 @@
 import React from 'react'
 
 const Threads = props => {
+  const { users, showSettings } = props
+
   return (
     <div className="threads">
       <div className="thread-bar">
         <h2>
-          <a onClick={this.showSettings}>
+          <a onClick={showSettings}>
             <i className="icon fas fa-cog" />
           </a>
           Messenger
@@ -13,7 +15,7 @@ const Threads = props => {
         </h2>
       </div>
       <ul className="thread-list">
-        {props.users.map((user, i) => (
+        {users.map((user, i) => (
           <li key={i} onClick={() => this.selectUser(user)}>
             <img
               src={`images/${user.username}_lg.jpg`}
