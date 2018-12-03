@@ -28,10 +28,10 @@ class App extends Component {
 
     return (
       <div className="app">
+        <Footer />
         <Modal show={showModal} toggleModal={this.toggleModal} />
         <Topbar toggleModal={this.toggleModal} />
         <Messenger />
-        <Footer />
       </div>
     )
   }
