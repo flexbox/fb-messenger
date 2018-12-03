@@ -4,6 +4,7 @@ import Modal from './components/Modal'
 import users from './mocks/users.js'
 import messages from './mocks/messages.js'
 import Footer from './components/Footer.js'
+import Topbar from './components/Topbar'
 
 const filterMessageByUsername = ({ username } = {}) => message =>
   message.from === username || message.to === username
@@ -61,21 +62,12 @@ class App extends Component {
       </div>
     ))
 
-    const loggedUser = { name: 'Alex' }
     const { showModal } = this.state
 
     return (
       <div className="app">
         <Modal show={showModal} toggleModal={this.toggleModal} />
-        <div className="top-bar">
-          <i className="icon fab fa-facebook-messenger" />
-          <a
-            onClick={this.toggleModal}
-            className={`username ${this.userPosition || 'left'}`}
-          >
-            Alex
-          </a>
-        </div>
+        <Topbar toggleModal={this.toggleModal} />
         <div className="messenger">
           <div className="threads">
             <div className="thread-bar">
