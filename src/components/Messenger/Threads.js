@@ -1,31 +1,12 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 
-import { fetchThreads } from '../../api/thread'
 import Avatar from '../Layout/Avatar'
 import Icon from '../Layout/Icon'
 
 class Threads extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      threads: []
-    }
-  }
-
-  componentDidMount() {
-    fetchThreads().then(({ threads }) => {
-      this.setState({ threads });
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
-
   render() {
-    const { history, match } = this.props
-    const { threads } = this.state
+    const { history, match, threads } = this.props
 
     return (
       <div className="threads">
@@ -38,7 +19,10 @@ class Threads extends Component {
         </div>
         <ul className="thread-list">
           {threads.map((thread, i) => (
-            <li key={i} onClick={() => history.push(`${match.url}/${thread.username}`)}>
+            <li
+              key={i}
+              onClick={() => history.push(`${match.url}/${thread.username}`)}
+            >
               <Avatar username={thread.username} size="large" />
               <div className="user-name">
                 <span>{`${thread.name.first} ${thread.name.last}`}</span>
