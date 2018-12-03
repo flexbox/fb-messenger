@@ -5,11 +5,11 @@ const Footer = () => (
   <div className="footer">
     <ul>
       <li>
-        <a target="_blank" href="https://reactjs.academy">ReactJS Academy</a>
+        <a target="_blank" href="https://reactjs.academy">
+          ReactJS Academy
+        </a>
       </li>
-      <li>
-        by
-      </li>
+      <li>by</li>
       <li>
         <a target="_blank" href="https://leanjs.com">
           <LeanJSLogo width={25} />
