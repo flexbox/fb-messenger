@@ -1,9 +1,11 @@
 import React from 'react'
 
 const Link = props => {
+  const { href, children } = props
+
   return (
-    <a target="_blank" href={props.href} rel="noopener noreferrer">
-      {props.children}
+    <a target="_blank" href={href} rel="noopener noreferrer">
+      {children}
     </a>
   )
 }
