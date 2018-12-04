@@ -6,22 +6,20 @@ class Login extends Component {
     super(props)
 
     // Here you'll need to set up the state of the form
-    this.state = {}
+    this.state = {
+      email: '',
+      password: ''
+    }
   }
 
-  handleChange = (name, event) => {
-    let change = {}
-    /*
-      explanation about the expression: change[name]
-      change.email = event  // the change variable is an object and so you can add a property by doing .name_of_the_property
-      change["email"] = event // the change variable is an object and so you can add a property by doing ["string_with_the_name_of_the_property_notice_the_quotes"]
-      change[name] = event // the change variable is an object and so you can add a property by doing [variable_with_the_name_of_the_property_notice_no_quotes]
-    */
-    change[name] = event.target.value
-    //You need to set the change object in the state of the component
+  _handleChange = (name, event) => {
+    let change = {
+      [name]: event.target.value
+    }
+    this.setState(change)
   }
 
-  handleSubmit = async (e) => {
+  _handleSubmit = async e => {
     // When the button(which type=submit) is clicked, we can stop the form submission by doing:
     e.preventDefault()
 
@@ -44,7 +42,7 @@ class Login extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <form className="form-signin">
         <div className="form-group">
@@ -56,19 +54,20 @@ class Login extends Component {
             placeholder="Enter email"
             className="form-control"
             value={this.state.email}
-            onChange={e => this.handleChange('email', e)}
+            onChange={e => this._handleChange('email', e)}
           />
           <input
             type="password"
             placeholder="Enter password"
             className="form-control"
             value={this.state.password}
+            onChange={e => this._handleChange('password', e)}
           />
         </div>
         <button
           type="submit"
           className="btn btn-lg btn-primary btn-block"
-          onClick={this.handleSubmit}
+          onClick={this._handleSubmit}
         >
           Sign in
         </button>
