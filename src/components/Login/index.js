@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Login.css'
+import Input from '../Form/Input'
 
 class Login extends Component {
   constructor(props) {
@@ -49,6 +50,13 @@ class Login extends Component {
           <h2 className="form-signin-heading">Please sign in</h2>
         </div>
         <div className="form-group">
+          <Input
+            type="email"
+            placeholder="Enter email"
+            value={this.state.email}
+            onChange={e => this._handleChange('email', e)}
+          />
+          <hr />
           <input
             type="email"
             placeholder="Enter email"
