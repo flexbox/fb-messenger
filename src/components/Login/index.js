@@ -38,7 +38,7 @@ class Login extends Component {
     })
 
     if (status === 200) {
-      // Here you need to "send" the user to '/'
+      history.push('/')
     }
   }
 
