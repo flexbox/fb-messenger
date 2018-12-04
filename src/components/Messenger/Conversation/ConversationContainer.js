@@ -8,19 +8,37 @@ class ConversationContainer extends Component {
     super(props)
 
     // hint, add some state here
+    this.state = {
+      conversation: []
+    }
+  }
+
+  _fetchConversation = username => {
+    this.setState({
+      conversation: []
+    })
+    // the following setTimeout is to simulate network latency in order to show a "loading" component
+    setTimeout(() => {
+      api._fetchConversation(username).then(messages => {
+        this.setState({
+          conversation: messages
+        })
+      })
+    }, 1000)
   }
 
   componentDidMount() {
     // hint, you should fetch the threads here
+    this._fetchConversation(this.props.match.params.username)
   }
 
   // https://reactjs.org/docs/react-component.html#componentdidupdate
   componentDidUpdate(prevProps) {
-    const needsToFetchUser = `Hint. Now you don't need to iterate the messages array
-    to see if the username in the url is different from the username's conversation you
-    are displaying. Use the prevProps parameter and the this.props in the following condition `
+    const needsToFetchUser =
+      conversation.length &&
+      !conversation.find(({ from, to }) => to === username || from === username)
     if (needsToFetchUser) {
-      this.fetchConversation(this.props.match.params.username)
+      this._fetchConversation(this.props.match.params.username)
     }
   }
 
@@ -30,6 +48,11 @@ class ConversationContainer extends Component {
 
     return (
       // hint, which component and props do you think we should return here?
+      <Conversation
+        match={match}
+        conversation={conversation}
+        username={username}
+      />
     )
   }
 }
