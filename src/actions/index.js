@@ -25,3 +25,8 @@ export const receiveMessage = message => ({
   type: RECEIVE_MESSAGE,
   message
 })
+
+export const receiveConversation = conversation => ({
+  type: RECEIVE_CONVERSATION,
+  conversation
+})

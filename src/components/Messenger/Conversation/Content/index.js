@@ -35,19 +35,15 @@ class ConversationContent extends Component {
 
     return (
       <ConversationContentWrapper>
-        <Modal
-          show={showModal}
-          toggleModal={this.toggleModal}
-        />
+        <Modal show={showModal} toggleModal={this.toggleModal} />
         <Messages
           conversation={conversation}
           username={username}
           toggleModal={this.toggleModal}
         />
-        {isMessageDetailOpen && <UserDetail
-          username={username}
-          toggleModal={this.toggleModal}
-        />}
+        {isMessageDetailOpen && (
+          <UserDetail username={username} toggleModal={this.toggleModal} />
+        )}
       </ConversationContentWrapper>
     )
   }
@@ -56,11 +52,10 @@ class ConversationContent extends Component {
 ConversationContent.propTypes = {
   conversation: PropTypes.array,
   username: PropTypes.string.isRequired,
-  match: PropTypes.object.isRequired,
-  isMessageDetailOpen: PropTypes.bool.isRequired,
+  isMessageDetailOpen: PropTypes.bool.isRequired
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isMessageDetailOpen: state.ui.isMessageDetailOpen
 })
 

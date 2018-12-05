@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import {
   RECEIVE_THREAD,
   TOGGLE_MESSAGE_DETAIL,
+  RECEIVE_CONVERSATION,
   RECEIVE_MESSAGE
 } from '../actions'
 
@@ -23,7 +24,17 @@ export function threadReducer(state = null, action) {
   }
 }
 
+export function conversationReducer(state = [], action) {
+  switch (action.type) {
+    case RECEIVE_CONVERSATION:
+      return action.conversation
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   ui: uiReducer,
-  thread: threadReducer
+  thread: threadReducer,
+  conversation: conversationReducer
 })

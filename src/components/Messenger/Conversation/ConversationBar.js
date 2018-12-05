@@ -8,13 +8,13 @@ import Icon from '../../Layout/Icon'
 import colours from '../../../styles/export/colours.css'
 
 const ConversationBarWrapper = styled.div`
-    position: relative;
-    border-bottom: 1px solid ${colours.mediumGrey};
-    padding: 1.05em;
-    align-items: center;
-    h2 {
-      text-transform: capitalize;
-    }
+  position: relative;
+  border-bottom: 1px solid ${colours.mediumGrey};
+  padding: 1.05em;
+  align-items: center;
+  h2 {
+    text-transform: capitalize;
+  }
 `
 
 const ConversationMenu = styled.div`
@@ -34,7 +34,9 @@ const ConversationBar = ({ username, match, conversation, dispatch }) => (
         <em>
           &nbsp; (<strong>{conversation.length}</strong> messages)
         </em>
-      ) : ''}
+      ) : (
+        ''
+      )}
     </h2>
     <ConversationMenu>
       <Icon name="phone" style={{ margin: '0 0.5em' }} />
@@ -49,11 +51,14 @@ const ConversationBar = ({ username, match, conversation, dispatch }) => (
 ConversationBar.propTypes = {
   match: PropTypes.object.isRequired,
   username: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   dispatch
 })
 
-export default connect(null, mapDispatchToProps)(ConversationBar)
+export default connect(
+  null,
+  mapDispatchToProps
+)(ConversationBar)

@@ -3,8 +3,8 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import Threads from './Threads'
 import { fetchFirstThread } from '../../api/thread'
+import Threads from './Threads'
 
 import { receiveThread } from '../../actions'
 
@@ -20,21 +20,15 @@ class ThreadsContainer extends Component {
   render() {
     const { history, match, thread } = this.props
 
-    return (
-      <Threads
-        thread={thread}
-        history={history}
-        match={match}
-      />
-    )
+    return <Threads thread={thread} history={history} match={match} />
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   thread: state.thread
 })
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   dispatch
 })
 
@@ -42,10 +36,15 @@ ThreadsContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   thread: PropTypes.object,
   history: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ThreadsContainer))
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ThreadsContainer)
+)
 
 /*
 SOME EXPLANATION AND TIPS ABOUT USING CONNECT
