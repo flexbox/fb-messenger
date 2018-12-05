@@ -42,7 +42,7 @@ describe('src/reducers/index.js', () => {
     expect(received).toEqual({
       thread: null,
       ui: { isMessageDetailOpen: true },
-      conversation: null
+      conversation: []
     })
   })
 })
