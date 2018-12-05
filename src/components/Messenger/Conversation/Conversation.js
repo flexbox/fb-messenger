@@ -6,8 +6,6 @@ import ConversationContent from './Content'
 const Conversation = ({ conversation, match }) => {
   const { username } = match.params
 
-  debugger
-
   return [
     <ConversationBar
       conversation={conversation}
