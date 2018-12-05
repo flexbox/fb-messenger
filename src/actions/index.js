@@ -12,16 +12,16 @@ action creators
 
 */
 
-export const receiveThread = (thread) => ({
-    type: 'RECEIVE_THREAD',
-    thread
+export const receiveThread = thread => ({
+  type: RECEIVE_THREAD,
+  thread
 })
 
 export const toggleMessageDetail = () => ({
-    type: TOGGLE_MESSAGE_DETAIL,
+  type: TOGGLE_MESSAGE_DETAIL
 })
 
-export const receiveMessage = (message) => ({
-    type: RECEIVE_MESSAGE,
-    message
+export const receiveMessage = message => ({
+  type: RECEIVE_MESSAGE,
+  message
 })

@@ -7,6 +7,8 @@ import {
 
 export function uiReducer(state = { isMessageDetailOpen: true }, action) {
   switch (action.type) {
+    case TOGGLE_MESSAGE_DETAIL:
+      return { ...state, isMessageDetailOpen: !state.isMessageDetailOpen }
     default:
       return state
   }
@@ -14,7 +16,7 @@ export function uiReducer(state = { isMessageDetailOpen: true }, action) {
 
 export function threadReducer(state = null, action) {
   switch (action.type) {
-    case 'RECEIVE_THREAD':
+    case RECEIVE_THREAD:
       return action.thread
     default:
       return state
