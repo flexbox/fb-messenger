@@ -6,7 +6,5 @@ import {
 } from './conversation'
 
 describe('Conversation action', () => {
-  it(``, () => {
-
-  })
+  it(``, () => {})
 })

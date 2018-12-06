@@ -1,7 +1,4 @@
-import {
-  receiveThread,
-  RECEIVE_THREAD,
-} from '../actions/thread'
+import { receiveThread, RECEIVE_THREAD } from '../actions/thread'
 
 import threadReducer from './thread'
 
@@ -15,15 +12,9 @@ Task 2, implement the expectations
 */
 
 describe('Thread reducer', () => {
-  it(``, () => {
+  it(`should`, () => {})
 
-  })
+  it(`return current state`, () => {})
 
-  it(``, () => {
-
-  })
-
-  it(``, () => {
-
-  })
+  it(`shoud handle actions`, () => {})
 })

@@ -1,7 +1,4 @@
-import {
-  toggleMessageDetail,
-  TOGGLE_MESSAGE_DETAIL,
-} from '../actions/ui'
+import { toggleMessageDetail, TOGGLE_MESSAGE_DETAIL } from '../actions/ui'
 
 import uiReducer, { getInitialState } from './ui'
 
@@ -14,15 +11,18 @@ Task 2, implement the expectations
 
 */
 describe('UI reducer', () => {
-  it(``, () => {
+  it(`should return the initial state if the state passed is undefined`, () => {
+    const actualState = { isMessageDetailOpen: false }
+    const expectedState = getInitialState()
 
+    expect(expectedState).toEqual(actualState)
   })
 
-  it(``, () => {
+  it(`should a new state if ${TOGGLE_MESSAGE_DETAIL} is provided`, () => {
+    const actualState = uiReducer(undefined, toggleMessageDetail())
+    const expectedState = getInitialState()
+    expectedState.isMessageDetailOpen = true
 
-  })
-
-  it(``, () => {
-
+    expect(expectedState).toEqual(actualState)
   })
 })

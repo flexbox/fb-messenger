@@ -1,11 +1,15 @@
-import {
-  receiveThread,
-  RECEIVE_THREAD,
-} from './thread'
+import { receiveThread, RECEIVE_THREAD } from './thread'
 
 describe('Thread action', () => {
-  // 1- pair up and discuss which 'it' statement you are going to write to describe the test case
-  it(`should...`, () => {
-      //2- Write a test for the function receiveThread
+  it(`should return an object with type ${RECEIVE_THREAD}`, () => {
+    const thread = { id: '1' }
+
+    expect(receiveThread(thread).type).toEqual(RECEIVE_THREAD)
+  })
+
+  it(`should return an object with a thread object`, () => {
+    const thread = { id: '1' }
+
+    expect(receiveThread(thread).thread).toEqual({ id: '1' })
   })
 })

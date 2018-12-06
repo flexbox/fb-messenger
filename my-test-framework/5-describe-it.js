@@ -3,6 +3,13 @@ const sum = (a, b) => a + b
 const substract = (a, b) => a - b
 
 function it(message, callback) {
+  console.log(message)
+  try {
+    callback()
+    console.log(`Success ✅`)
+  } catch (error) {
+    console.log(`Error ${error.message}`)
+  }
   /* Task:
     - console.log the message
     - Execute the callback
@@ -18,16 +25,16 @@ function describe(message, callback) {
   */
 }
 
-describe('Testing sum',() => {
+describe('Testing sum', () => {
   it('sum 2 and 1 should be 3', () => {
-    actual = sum(2,1)
+    actual = sum(2, 1)
     expect(actual).toBe(4)
   })
 })
 
-describe('Testing substract',() => {
+describe('Testing substract', () => {
   it('substract 2 and 1 should be 1', () => {
-    actual = substract(2,1)
+    actual = substract(2, 1)
     expect(actual).toBe(1)
   })
 })
@@ -35,18 +42,22 @@ describe('Testing substract',() => {
 function expect(actual) {
   function toEqual(expected) {
     if (actual != expected) {
-      throw new Error(`Actual value was ${actual}, but ${expected} was expected`)
+      throw new Error(
+        `Actual value was ${actual}, but ${expected} was expected`
+      )
     }
   }
 
   function toBe(expected) {
     if (actual !== expected) {
-      throw new Error(`Actual value was ${actual}, but ${expected} was expected`)
+      throw new Error(
+        `Actual value was ${actual}, but ${expected} was expected`
+      )
     }
   }
 
   return {
     toEqual,
-    toBe,
+    toBe
   }
 }
