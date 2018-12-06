@@ -3,7 +3,7 @@ import reducers from '../reducers'
 
 const addLoggerMiddleware = store => {
   const rawDispatch = store.dispatch
-  return (action) => {
+  return action => {
     console.group(action.type)
     console.log('prev state', store.getState())
     console.log('action', action)
@@ -15,15 +15,22 @@ const addLoggerMiddleware = store => {
 }
 
 const addThunkMiddleware = store => {
+  const rawDispatch = store.dispatch
 
-};
+  return actionOrFunction => {
+    if (typeof actionOrFunction === 'function') {
+      actionOrFunction(rawDispatch)
+    } else {
+      rawDispatch(actionOrFunction)
+    }
+  }
+}
 
 const configureStore = () => {
-  const store = createStore(
-    reducers
-  )
+  const store = createStore(reducers)
 
   store.dispatch = addLoggerMiddleware(store)
+  store.dispatch = addThunkMiddleware(store)
 
   return store
 }
