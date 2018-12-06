@@ -13,7 +13,7 @@ const ThreadsWrapper = styled.div`
   display: flex;
   border-right: 1px solid ${colours.mediumGrey};
   flex-direction: column;
-  flex:1;
+  flex: 1;
 `
 
 const ThreadBar = styled.div`
@@ -28,21 +28,20 @@ const ThreadBar = styled.div`
 `
 
 const ThreadList = styled.ul`
-    overflow-y: auto;
-    width: 100%;
-    list-style: none inside none;
-    padding: 0;
-    margin: 0;
-    li {
-      display: flex;
-      align-items: center;
-      padding: 0.4em 0.75em;
-      &:hover {
-        background: ${colours.lightGrey};
-        cursor: pointer;
-      }
-
+  overflow-y: auto;
+  width: 100%;
+  list-style: none inside none;
+  padding: 0;
+  margin: 0;
+  li {
+    display: flex;
+    align-items: center;
+    padding: 0.4em 0.75em;
+    &:hover {
+      background: ${colours.lightGrey};
+      cursor: pointer;
     }
+  }
 `
 
 const UserName = styled.div`
@@ -79,7 +78,9 @@ const Threads = ({ history, match, data }) => {
           </li>
         ))}
       </ThreadList>
-    ) : <p>There are no messages</p>
+    ) : (
+      <p>There are no messages</p>
+    )
   }
 
   return (
@@ -96,12 +97,10 @@ const Threads = ({ history, match, data }) => {
   )
 }
 
-
-
 Threads.propTypes = {
   thread: PropTypes.object,
   history: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
 }
 
 Threads.defaultProps = {
@@ -110,23 +109,36 @@ Threads.defaultProps = {
   }
 }
 
-/* 
-There are two ways you can "connect" to the GraphQL API, Render Props or Higher-Order Components (HoC). 
+/*
+There are two ways you can "connect" to the GraphQL API, Render Props or Higher-Order Components (HoC).
 In this example we are going to use HoC.
 You will need to do 3 things:
 
 1) Create the GraphQL query. We recommend you to first run it in http://localhost:3000/graphiql
 
 2) Transform the query into JavaScript so it can run on the browser. You'll need to use the gql function imported at the top. Example: https://github.com/apollographql/graphql-tag
-E.g. 
-const query = gql`
-  someQuery
-`
+E.g.
+*/
 
-3) "Connect" the Threads component to GraphQL using the HoC graphql (imported at the top). This Hoc will receive your query and the Threads Component. 
+const query = gql`
+  query {
+    threads {
+      username
+      firstName
+      lastName
+      lastMessage {
+        message
+      }
+    }
+  }
+`
+/*
+3) "Connect" the Threads component to GraphQL using the HoC graphql (imported at the top). This Hoc will receive your query and the Threads Component.
 Official documentation https://www.apollographql.com/docs/react/api/react-apollo.html#graphql
 E.g.
 export default graphql(query)(MyCoolComponent)
 */
 
-export default withRouter(Threads)
+const withQuery = graphql(query)
+
+export default withRouter(withQuery(Threads))
