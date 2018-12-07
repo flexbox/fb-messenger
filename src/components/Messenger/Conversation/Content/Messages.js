@@ -4,35 +4,35 @@ import styled, { css } from 'styled-components'
 import { connect } from 'react-redux'
 
 import colours from '../../../../styles/export/colours.css'
-import { receiveMessage } from "../../../../actions/conversation"
-import * as api from "../../../../api/message"
+import { receiveMessage } from '../../../../actions/conversation'
+import * as api from '../../../../api/message'
 import Avatar from '../../../Layout/Avatar'
 import Icon from '../../../Layout/Icon'
 
 const MessagesWrapper = styled.div`
   display: flex;
-  flex:2;
+  flex: 2;
   flex-direction: column;
   justify-content: space-between;
 `
 
 const MessagesList = styled.div`
-    padding: 1em;
-    overflow-y: auto;
-    p {
-      color: ${colours.darkGrey};
-      font-size: 0.9em;
-    }
+  padding: 1em;
+  overflow-y: auto;
+  p {
+    color: ${colours.darkGrey};
+    font-size: 0.9em;
+  }
 `
 
 const NewMessage = styled.div`
-    min-height: 20px;
-    padding: 1em;
-    border-top: 1px solid ${colours.mediumGrey};
-    font-size: 0.9rem;
-    display: flex;
-    justify-content: space-between;
-    height: 60px;
+  min-height: 20px;
+  padding: 1em;
+  border-top: 1px solid ${colours.mediumGrey};
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
 `
 
 export const MessageBox = styled.input`
@@ -44,9 +44,11 @@ const MessageWrapper = styled.div`
   padding: 0.5em;
   display: flex;
 
-  ${props => props.from === 'sent' && css`
-    justify-content: flex-end;
-  `}
+  ${props =>
+    props.from === 'sent' &&
+    css`
+      justify-content: flex-end;
+    `}
 `
 
 const MessageRead = styled.div`
@@ -56,12 +58,14 @@ const MessageRead = styled.div`
 `
 
 export const Message = styled.div`
-    border-radius: 20px;
-    padding: 0.5em 1em;
-    display: inline-block;
-    font-size: 0.9rem;
-    background: ${props => props.from === 'received' ? colours.lightGrey : colours.lightBlue};
-    color: ${props => props.from === 'received' ? colours.black : colours.white}
+  border-radius: 20px;
+  padding: 0.5em 1em;
+  display: inline-block;
+  font-size: 0.9rem;
+  background: ${props =>
+    props.from === 'received' ? colours.lightGrey : colours.lightBlue};
+  color: ${props =>
+    props.from === 'received' ? colours.black : colours.white};
 `
 
 export class Messages extends React.Component {
@@ -85,12 +89,15 @@ export class Messages extends React.Component {
   render() {
     const { conversation = [], username } = this.props
     const styledConversation = conversation.map((message, i) => (
-      <MessageWrapper key={i} from={message.from === "you" ? "sent" : "received"}>
-        {message.to === "you" && <Avatar username={username} size="medium" />}
-        <Message from={message.from === "you" ? "sent" : "received"}>
+      <MessageWrapper
+        key={i}
+        from={message.from === 'you' ? 'sent' : 'received'}
+      >
+        {message.to === 'you' && <Avatar username={username} size="medium" />}
+        <Message from={message.from === 'you' ? 'sent' : 'received'}>
           {message.message}
         </Message>
-        {message.from === "you" && (
+        {message.from === 'you' && (
           <MessageRead>
             <Icon name="check-circle" size={0.6} />
           </MessageRead>
@@ -104,8 +111,8 @@ export class Messages extends React.Component {
           {styledConversation.length ? (
             styledConversation
           ) : (
-              <p>You have no messages</p>
-            )}
+            <p>You have no messages</p>
+          )}
         </MessagesList>
         <NewMessage>
           <MessageBox
@@ -129,15 +136,18 @@ Messages.propTypes = {
   conversation: PropTypes.array,
   username: PropTypes.string.isRequired,
   api: PropTypes.object.isRequired,
-  receiveMessage: PropTypes.func.isRequired,
+  receiveMessage: PropTypes.func
 }
 
 const mapStateToProps = state => ({
   conversation: state.conversation
 })
 
-const mapDispatchToProps = ({
-  receiveMessage,
-})
+const mapDispatchToProps = {
+  receiveMessage
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Messages)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Messages)
